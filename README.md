@@ -1,0 +1,1 @@
+# FindScan---Bollinger-Bands-KLineCharts-
