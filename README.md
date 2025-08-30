@@ -1,33 +1,36 @@
-# Bollinger Bands + KLineCharts (Next.js + TS + Tailwind)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A minimal, production-ready starter that renders a **custom Bollinger Bands (BB)** indicator as a price overlay using **KLineCharts**.
+## Getting Started
 
-## Quick start
+First, run the development server:
 
 ```bash
-npm i
 npm run dev
-# open http://localhost:3000
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-- Data lives in `public/data/ohlcv.json` (OHLCV, ms timestamps). Replace with your dataset when ready.
-- BB indicator source is in `lib/indicators/bollinger.ts`.
-- Settings panel lets you tweak: **length, multiplier, offset, line width/style, colors, per-line visibility, background visibility & opacity**.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Notes (match the assignment)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- The overlay name is `BB`.
-- Figures: **Basis**, **Upper**, **Lower** with configurable styles; background fill is drawn between Upper & Lower.
-- Inputs: `Length`, `Multiplier`, `Offset`, plus UI fields for `Basic MA Type` (SMA only) and `Source` (close only).
-- Standard deviation: **Population** (÷ N). You can switch to sample (÷ N-1) in the code.
-- Built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Where to change things
+## Learn More
 
-- **Indicator math / behavior**: `lib/indicators/bollinger.ts` (calc + optional draw)
-- **UI Controls**: `components/BollingerSettings.tsx`
-- **Chart host**: `components/Chart.tsx`
+To learn more about Next.js, take a look at the following resources:
 
-## Caveats
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- The custom `draw()` uses the v9 indicator draw context. If your installed `klinecharts` minor version doesn't expose the same shape, you can comment out the `draw()` block to remove background fill. The lines will still render and update via `overrideIndicator(...)`.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small dark-friendly default */
+html, body, #__next { height: 100%; }
+body { background: #0b1220; color: #e6eef8; }
