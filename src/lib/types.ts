@@ -1,4 +1,3 @@
-// OHLCV type
 export interface Candle {
   timestamp: number;
   open: number;

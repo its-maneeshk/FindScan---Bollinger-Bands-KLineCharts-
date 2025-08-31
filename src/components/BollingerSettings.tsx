@@ -31,7 +31,6 @@ interface SettingsProps {
   onChange: (newInputs: Inputs, newStyles: Styles) => void;
 }
 
-// ✅ Reusable Input Components
 const NumberInput = ({
   id,
   label,
@@ -125,7 +124,6 @@ export default function BollingerSettings({
     setLocalStyles(styles);
   };
 
-  // ✅ Close with ESC key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();

@@ -13,7 +13,6 @@ interface ModalProps {
 export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // Close modal on ESC key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -22,7 +21,6 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
     return () => document.removeEventListener('keydown', handleEsc);
   }, [onClose]);
 
-  // Close modal if clicked outside content
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === overlayRef.current) onClose();
   };
