@@ -8,6 +8,7 @@ interface Inputs {
   length: number;
   multiplier: number;
   offset: number;
+  maType: string; // NEW FIELD
 }
 
 interface Styles {
@@ -31,6 +32,7 @@ interface SettingsProps {
   onChange: (newInputs: Inputs, newStyles: Styles) => void;
 }
 
+// ✅ Reusable Input Components
 const NumberInput = ({
   id,
   label,
@@ -96,10 +98,42 @@ const ColorInput = ({
     <input
       id={id}
       type="color"
+      title={`${label} picker`}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-10 h-8 cursor-pointer"
+      className="w-10 h-8 cursor-pointer rounded"
     />
+  </label>
+);
+
+// NEW: Dropdown for MA Type
+const SelectInput = ({
+  id,
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+}) => (
+  <label htmlFor={id} className="flex justify-between items-center">
+    {label}
+    <select
+      id={id}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="bg-gray-800 p-1 rounded w-32 text-right focus:ring-2 focus:ring-blue-400 outline-none"
+    >
+      {options.map((opt) => (
+        <option key={opt} value={opt}>
+          {opt}
+        </option>
+      ))}
+    </select>
   </label>
 );
 
@@ -110,7 +144,8 @@ export default function BollingerSettings({
   styles,
   onChange,
 }: SettingsProps) {
-  const [tab, setTab] = useState<'Inputs' | 'Style'>('Inputs');
+  type TabKey = 'Inputs' | 'Style';
+  const [tab, setTab] = useState<TabKey>('Inputs');
   const [localInputs, setLocalInputs] = useState(inputs);
   const [localStyles, setLocalStyles] = useState(styles);
 
@@ -124,6 +159,7 @@ export default function BollingerSettings({
     setLocalStyles(styles);
   };
 
+  // ✅ Close with ESC key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -134,13 +170,8 @@ export default function BollingerSettings({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Bollinger Bands Settings">
-      {/* Scrollable content wrapper */}
       <div className="max-h-[80vh] overflow-y-auto px-1">
-        <Tabs
-          tabs={['Inputs', 'Style']}
-          active={tab}
-          onChange={(t) => setTab(t as any)}
-        />
+        <Tabs tabs={['Inputs', 'Style']} active={tab} onChange={(t) => setTab(t as TabKey)} />
 
         {tab === 'Inputs' && (
           <div className="space-y-3 mt-4">
@@ -163,29 +194,35 @@ export default function BollingerSettings({
               value={localInputs.offset}
               onChange={(v) => setLocalInputs({ ...localInputs, offset: v })}
             />
+            <SelectInput
+              id="maType"
+              label="MA Type:"
+              value={localInputs.maType}
+              options={['SMA']} // ✅ Only SMA for now
+              onChange={(v) => setLocalInputs({ ...localInputs, maType: v })}
+            />
           </div>
         )}
 
         {tab === 'Style' && (
           <div className="space-y-4 mt-4">
-            <CheckboxInput
-              id="showBasis"
-              label="Show Basis"
-              checked={localStyles.showBasis}
-              onChange={(v) => setLocalStyles({ ...localStyles, showBasis: v })}
-            />
-            <CheckboxInput
-              id="fillBackground"
-              label="Fill Background"
-              checked={localStyles.fillBackground}
-              onChange={(v) => setLocalStyles({ ...localStyles, fillBackground: v })}
-            />
+            <div className="space-y-2 border-b border-gray-700 pb-3">
+              <CheckboxInput
+                id="showBasis"
+                label="Show Basis"
+                checked={localStyles.showBasis}
+                onChange={(v) => setLocalStyles({ ...localStyles, showBasis: v })}
+              />
+              <CheckboxInput
+                id="fillBackground"
+                label="Fill Background"
+                checked={localStyles.fillBackground}
+                onChange={(v) => setLocalStyles({ ...localStyles, fillBackground: v })}
+              />
+            </div>
 
-            <label
-              htmlFor="opacity"
-              className="flex justify-between items-center gap-3"
-            >
-              Opacity: <span>{localStyles.fillOpacity}</span>
+            <label htmlFor="opacity" className="flex justify-between items-center gap-3">
+              Opacity: <span className="text-blue-400 font-medium">{localStyles.fillOpacity}</span>
               <input
                 id="opacity"
                 type="range"
@@ -228,16 +265,16 @@ export default function BollingerSettings({
       </div>
 
       {/* Sticky footer */}
-      <div className="flex justify-end mt-4 gap-3 border-t pt-3 sticky bottom-0 bg-gray-900">
+      <div className="flex justify-end mt-4 gap-3 border-t pt-3 sticky bottom-0 bg-[#351c28]">
         <button
           onClick={handleReset}
-          className="px-4 py-1 bg-gray-600 rounded hover:bg-gray-500"
+          className="px-4 py-1 bg-gray-600 rounded hover:bg-gray-500 transition"
         >
           Reset
         </button>
         <button
           onClick={handleSave}
-          className="px-4 py-1 bg-blue-500 rounded hover:bg-blue-400"
+          className="px-4 py-1 bg-blue-500 rounded hover:bg-blue-400 transition"
         >
           Save
         </button>
