@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 FindScan - Bollinger Bands & K-Line Charts  
 
-## Getting Started
+A modern React + Vite + TailwindCSS application that visualizes financial data using **Bollinger Bands** and **K-Line (candlestick) charts**.  
+This project is designed for traders, students, and developers who want to analyze stock trends interactively.  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features  
+- 📈 **Candlestick Charts (K-Line)** for stock visualization  
+- 📊 **Bollinger Bands** overlay for trend analysis  
+- 🎨 **Responsive & Dark Mode Friendly UI** (TailwindCSS powered)  
+- ⚡ Built with **React + Vite** for blazing-fast development  
+- 📐 Chart rendering with **Recharts** (customizable, interactive)  
+
+---
+
+## 🛠️ Tech Stack  
+- **Frontend Framework:** React (with Vite)  
+- **Styling:** TailwindCSS  
+- **Charts:** Recharts  
+- **Language:** TypeScript / JavaScript  
+
+---
+
+## 📂 Project Structure  
+```
+FindScan---Bollinger-Bands-KLineCharts-
+│── src/
+│   ├── components/     # Reusable components
+│   │   ├── Chart.tsx   # Bollinger Bands + K-Line Chart
+│   │   └── Navbar.tsx  # (optional) navigation bar
+│   ├── app/            
+│   │   ├── layout.tsx  # Root layout
+│   │   └── page.tsx    # Main page
+│   ├── styles/
+│   │   └── globals.css # Tailwind global styles
+│── public/             # Static assets
+│── package.json
+│── tailwind.config.js
+│── vite.config.ts
+│── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Installation & Setup  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**  
+```bash
+git clone https://github.com/your-username/FindScan-Bollinger-KLineCharts.git
+cd FindScan-Bollinger-KLineCharts
+```
 
-## Learn More
+2. **Install dependencies**  
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Run the development server**  
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Open your browser at 👉 `http://localhost:5173`  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📊 Example Chart  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Candlesticks** → Represent open, high, low, close prices  
+- **Bollinger Bands** → Show price volatility & potential breakout zones  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📝 Future Enhancements  
+- ✅ Add more financial indicators (RSI, MACD, EMA)  
+- ✅ Improve chart interactivity (zoom, pan, tooltips)  
+- ✅ Connect to real-time stock API (Yahoo Finance, Alpha Vantage)  
+- ✅ Export charts as images or PDF  
+
+---
+
+## 📜 License  
+MIT License © 2025 [Your Name]  

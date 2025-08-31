@@ -1,14 +1,18 @@
 import { Candle } from "../types";
 
-//  Options for Bollinger Bands
+/**
+ * Options for Bollinger Bands
+ */
 export interface BollingerOptions {
-  length: number;       
-  multiplier: number;  
-  offset: number;       
-  source: keyof Candle; 
+  length: number;       // lookback period for SMA
+  multiplier: number;   // stddev multiplier (usually 2)
+  offset: number;       // shift bands by N bars
+  source: keyof Candle; // data source (only 'close' for now)
 }
 
-//  Output type for Bollinger Bands
+/**
+ * Output type for Bollinger Bands
+ */
 export interface BollingerPoint {
   timestamp: number;
   basis: number | null;
@@ -16,14 +20,19 @@ export interface BollingerPoint {
   lower: number | null;
 }
 
-
-//  Simple Moving Average
+/**
+ * Simple Moving Average
+ */
 function sma(values: number[]): number {
   const sum = values.reduce((a, b) => a + b, 0);
   return sum / values.length;
 }
 
-  // Population Standard Deviation
+/**
+ * Population Standard Deviation
+ * (note: could also use sample stddev if required,
+ * but we stick to population for consistency)
+ */
 function stddev(values: number[]): number {
   const mean = sma(values);
   const variance =
@@ -32,7 +41,9 @@ function stddev(values: number[]): number {
   return Math.sqrt(variance);
 }
 
-//  Compute Bollinger Bands for given OHLCV candles
+/**
+ * Compute Bollinger Bands for given OHLCV candles
+ */
 export function computeBollingerBands(
   data: Candle[],
   opts: BollingerOptions

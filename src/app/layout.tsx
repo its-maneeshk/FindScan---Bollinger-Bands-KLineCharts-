@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'FindScan - Bollinger Demo',
+  title: 'FindScan - Bollinger KLinerChart',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
