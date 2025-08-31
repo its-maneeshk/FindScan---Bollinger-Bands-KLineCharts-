@@ -41,3 +41,11 @@ This project is designed for traders, students, and developers who want to analy
 - **Bollinger Bands** → Show price volatility & potential breakout zones  
 
 ---
+
+
+## ⚖️ Trade-offs & Known Issues
+- **Chart Responsiveness:** Works well for most screen sizes, but extreme aspect ratios may cause clipping. Could be improved with `ResizeObserver`.
+- **Data Source:** Uses randomly generated OHLCV data (offline). Could be improved by integrating a real-time market API.
+- **Indicator Styles:** Supports basis/upper/lower, dashed/solid, fill opacity. More advanced styles (gradients, multiple overlays) not implemented for simplicity.
+- **Next.js Strict Mode (Dev only):** Double initialization may cause chart to mount twice in development. Production build is unaffected.
+- **Accessibility:** ESC key closes modal. Further improvements like ARIA roles and screen reader support can be added.
